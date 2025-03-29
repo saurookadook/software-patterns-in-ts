@@ -1,0 +1,27 @@
+{
+    "extends": "./tsconfig.node.json",
+    "compilerOptions": {
+        "declaration": true,
+        "declarationMap": true,
+        "lib": [
+            "ES2020",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        // "module": "node16",
+        "moduleResolution": "Node",
+        "rootDir": "packages/",
+        // "sourceMap": true,
+        // "strict": true,
+        // "target": "es2020", // set to the *lowest* target you support
+        // "verbatimModuleSyntax": true,
+    },
+    "include": [
+        "packages"
+    ],
+    "exclude": [
+        "**/__tests__/",
+        "**/*.test.{ts,tsx}",
+        "**/vite.config.ts"
+    ],
+}
