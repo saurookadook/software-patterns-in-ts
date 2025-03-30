@@ -1,9 +1,5 @@
-import { Builder } from './Builder';
 import { EngineTypes, ComputerTypes, GPSTypes } from './constants';
-
-type NotSet = 'NOT_SET';
-
-type NotSettable<T> = T | NotSet
+import type { Builder, NotSet, NotSettable } from './types';
 
 /**
  * @description A car can have a GPS, trip computer and some number of \
