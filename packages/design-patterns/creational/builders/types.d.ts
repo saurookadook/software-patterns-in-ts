@@ -1,9 +1,11 @@
+import { EngineTypes } from "./constants";
+
 export interface Builder {
     reset(): void;
     setSeats(seats: number): void;
-    setEngine(engineType: string): void; // TODO: maybe enum?
-    setTripComputer(computerType: string): void; // TODO: maybe enum?
-    setGPS(gpsType: string): void; // TODO: maybe enum?
+    setEngine(engineType: EngineTypes): void;
+    setTripComputer(shouldHaveTripComputer: boolean): void;
+    setGPS(shouldHaveGPS: boolean): void;
 }
 
 export type NotSet = 'NOT_SET';

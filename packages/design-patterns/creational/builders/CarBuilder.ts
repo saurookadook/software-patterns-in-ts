@@ -1,4 +1,4 @@
-import { EngineTypes, ComputerTypes, GPSTypes } from './constants';
+import { EngineTypes } from './constants';
 import { Car } from './entities';
 import type { Builder } from './types';
 
@@ -39,16 +39,16 @@ export class CarBuilder implements Builder {
         return this.car.tripComputer;
     }
 
-    setTripComputer(computerType: ComputerTypes): void {
-        this.car.tripComputer = computerType;
+    setTripComputer(shouldHaveTripComputer: boolean): void {
+        this.car.tripComputer = shouldHaveTripComputer;
     }
 
     getGPS() {
         return this.car.GPS;
     }
 
-    setGPS(gpsType: GPSTypes): void {
-        this.car.GPS = gpsType;
+    setGPS(shouldHaveGPS: boolean): void {
+        this.car.GPS = shouldHaveGPS;
     }
 
     /**

@@ -1,4 +1,4 @@
-import { SeatsMetadata, EngineTypes, ComputerTypes, GPSTypes } from '../constants';
+import { SeatsMetadata, EngineTypes } from '../constants';
 import type { NotSet, NotSettable } from '../types';
 
 /**
@@ -12,8 +12,8 @@ export class Car {
 
     private _seats: NotSettable<number> = Car.NOT_SET;
     private _engine: NotSettable<EngineTypes> = Car.NOT_SET;
-    private _tripComputer: NotSettable<ComputerTypes> = Car.NOT_SET;
-    private _GPS: NotSettable<GPSTypes> = Car.NOT_SET;
+    private _tripComputer: boolean = false;
+    private _GPS: boolean = false;
 
     constructor() {
         // TODO: maybe add some default values
@@ -41,25 +41,19 @@ export class Car {
         this._engine = engineType;
     }
 
-    get tripComputer(): NotSettable<ComputerTypes> {
+    get tripComputer(): boolean {
         return this._tripComputer;
     }
 
-    set tripComputer(tripComputerType: ComputerTypes) {
-        if (!(tripComputerType in ComputerTypes)) {
-            throw new TypeError(`Invalid trip computer type: '${tripComputerType}'`);
-        }
-        this._tripComputer = tripComputerType;
+    set tripComputer(shouldHaveTripComputer: boolean) {
+        this._tripComputer = shouldHaveTripComputer;
     }
 
-    get GPS(): NotSettable<GPSTypes> {
+    get GPS(): boolean {
         return this._GPS;
     }
 
-    set GPS(gpsType: GPSTypes) {
-        if (!(gpsType in GPSTypes)) {
-            throw new TypeError(`Invalid GPS type: '${gpsType}'`);
-        }
-        this._GPS = gpsType;
+    set GPS(shouldHaveGps: boolean) {
+        this._GPS = shouldHaveGps;
     }
 }

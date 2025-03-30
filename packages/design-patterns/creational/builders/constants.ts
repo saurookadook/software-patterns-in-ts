@@ -9,15 +9,3 @@ export enum EngineTypes {
     Electric = 'Electric',
     Gasoline = 'Gasoline'
 };
-
-export enum ComputerTypes {
-    Basic = 'Basic',
-    Advanced = 'Advanced',
-    Pro = 'Pro'
-};
-
-export enum GPSTypes {
-    Basic = 'Basic',
-    Advanced = 'Advanced',
-    Pro = 'Pro'
-}

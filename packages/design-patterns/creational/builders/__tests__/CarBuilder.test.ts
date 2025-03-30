@@ -1,11 +1,7 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 
 import { CarBuilder } from '../../builders';
-import {
-    EngineTypes,
-    ComputerTypes,
-    GPSTypes,
-} from '../constants';
+import { EngineTypes } from '../constants';
 import { Car } from '../entities';
 
 describe('CarBuilder', () => {
@@ -32,18 +28,18 @@ describe('CarBuilder', () => {
     });
 
     test('can set and get trip computer', () => {
-        expect(carBuilder.getTripComputer()).toBe(Car.NOT_SET);
+        expect(carBuilder.getTripComputer()).toBe(false);
 
-        carBuilder.setTripComputer(ComputerTypes.Pro);
+        carBuilder.setTripComputer(true);
 
-        expect(carBuilder.getTripComputer()).toBe(ComputerTypes.Pro);
+        expect(carBuilder.getTripComputer()).toBe(true);
     });
 
     test('can set and get GPS', () => {
-        expect(carBuilder.getGPS()).toBe(Car.NOT_SET);
+        expect(carBuilder.getGPS()).toBe(false);
 
-        carBuilder.setGPS(GPSTypes.Basic);
+        carBuilder.setGPS(true);
 
-        expect(carBuilder.getGPS()).toBe(GPSTypes.Basic);
+        expect(carBuilder.getGPS()).toBe(true);
     });
 });
