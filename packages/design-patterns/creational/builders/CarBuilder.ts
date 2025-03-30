@@ -1,67 +1,13 @@
 import { EngineTypes, ComputerTypes, GPSTypes } from './constants';
-import type { Builder, NotSet, NotSettable } from './types';
+import { Car } from './entities';
+import type { Builder } from './types';
 
 /**
- * @description A car can have a GPS, trip computer and some number of \
- * seats. Different models of cars (sports car, SUV, \
- * cabriolet) might have different features installed or \
- * enabled.
+ * @description The concrete builder classes follow the builder interface \
+ * and provide specific implementations of the building steps. Your \
+ * program may have program may have several variations of builders, each \
+ * implemented differently.
  */
-export class Car {
-    static NOT_SET: NotSet = 'NOT_SET';
-
-    private _seats: NotSettable<number> = Car.NOT_SET;
-    private _engine: NotSettable<EngineTypes> = Car.NOT_SET;
-    private _tripComputer: NotSettable<ComputerTypes> = Car.NOT_SET;
-    private _GPS: NotSettable<GPSTypes> = Car.NOT_SET;
-
-
-    constructor() {
-        // TODO: maybe add some default values
-    }
-
-    get seats(): NotSettable<number> {
-        return this._seats;
-    }
-
-    set seats(seats: number) {
-        this._seats = seats;
-    }
-
-    get engine(): NotSettable<EngineTypes> {
-        return this._engine;
-    }
-
-    set engine(engineType: EngineTypes) {
-        if (!(engineType in EngineTypes)) {
-            throw new TypeError(`Invalid engine type: '${engineType}'`);
-        }
-        this._engine = engineType;
-    }
-
-    get tripComputer(): NotSettable<ComputerTypes> {
-        return this._tripComputer;
-    }
-
-    set tripComputer(tripComputerType: ComputerTypes) {
-        if (!(tripComputerType in ComputerTypes)) {
-            throw new TypeError(`Invalid trip computer type: '${tripComputerType}'`);
-        }
-        this._tripComputer = tripComputerType;
-    }
-
-    get GPS(): NotSettable<GPSTypes> {
-        return this._GPS;
-    }
-
-    set GPS(gpsType: GPSTypes) {
-        if (!(gpsType in GPSTypes)) {
-            throw new TypeError(`Invalid GPS type: '${gpsType}'`);
-        }
-        this._GPS = gpsType;
-    }
-}
-
 export class CarBuilder implements Builder {
     private car: Car;
 
@@ -103,5 +49,28 @@ export class CarBuilder implements Builder {
 
     setGPS(gpsType: GPSTypes): void {
         this.car.GPS = gpsType;
+    }
+
+    /**
+     * @description Concrete builders are supposed to provide their own \
+     * methods for retrieving results. That's because various \
+     * types of builders may create entirely different products \
+     * that don't all follow the same interface. Therefore such \
+     * methods can't be declared in the builder interface (at \
+     * least not in a statically-typed programming language). \
+     *
+     * Usually, after returning the end result to the client, a \
+     * builder instance is expected to be ready to start \
+     * producing another product. That's why it's a usual \
+     * practice to call the reset method at the end of the \
+     * `getProduct` method body. However, this behavior isn't \
+     * mandatory, and you can make your builder wait for an \
+     * explicit reset call from the client code before disposing \
+     * of the previous result. \
+    */
+    getProduct(): Car {
+        const product = this.car;
+        this.reset();
+        return product;
     }
 }
