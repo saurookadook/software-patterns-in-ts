@@ -63,7 +63,10 @@ const _rules = {
 export default tseslint.config(
     { ignores: ['dist'] },
     {
-        extends: [js.configs.recommended, ...tseslint.configs.recommended],
+        extends: [
+          js.configs.recommended,
+          tseslint.configs.recommended,
+        ],
         files: ['**/*.{ts,tsx}'],
         ignores: [
             'build',
@@ -92,13 +95,14 @@ export default tseslint.config(
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
+            ..._rules,
             'react-refresh/only-export-components': [
                 'warn',
                 { allowConstantExport: true },
             ],
             '@typescript-eslint/ban-ts-comment': 1,
             '@typescript-eslint/no-explicit-any': 1,
-            ..._rules,
+            'no-unused-vars': 0,
         },
     },
     {
