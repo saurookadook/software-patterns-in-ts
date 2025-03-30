@@ -1,4 +1,9 @@
 import { Builder } from './Builder';
+import { EngineTypes, ComputerTypes, GPSTypes } from './constants';
+
+type NotSet = 'NOT_SET';
+
+type NotSettable<T> = T | NotSet
 
 /**
  * @description A car can have a GPS, trip computer and some number of \
@@ -7,46 +12,56 @@ import { Builder } from './Builder';
  * enabled.
  */
 export class Car {
-    private _seats: number;
-    private _engine: string; // TODO: maybe enum?
-    private _tripComputer: string; // TODO: maybe enum?
-    private _GPS: string; // TODO: maybe enum?
+    static NOT_SET: NotSet = 'NOT_SET';
 
-    static NOT_SET: string = 'NOT_SET';
+    private _seats: NotSettable<number> = Car.NOT_SET;
+    private _engine: NotSettable<EngineTypes> = Car.NOT_SET;
+    private _tripComputer: NotSettable<ComputerTypes> = Car.NOT_SET;
+    private _GPS: NotSettable<GPSTypes> = Car.NOT_SET;
+
 
     constructor() {
-
+        // TODO: maybe add some default values
     }
 
-    get seats(): number {
-        return this._seats ?? Car.NOT_SET;
+    get seats(): NotSettable<number> {
+        return this._seats;
     }
 
     set seats(seats: number) {
         this._seats = seats;
     }
 
-    get engine(): string {
-        return this._engine ?? Car.NOT_SET;
+    get engine(): NotSettable<EngineTypes> {
+        return this._engine;
     }
 
-    set engine(engineType: string) {
+    set engine(engineType: EngineTypes) {
+        if (!(engineType in EngineTypes)) {
+            throw new TypeError(`Invalid engine type: '${engineType}'`);
+        }
         this._engine = engineType;
     }
 
-    get tripComputer(): string {
-        return this._tripComputer ?? Car.NOT_SET;
+    get tripComputer(): NotSettable<ComputerTypes> {
+        return this._tripComputer;
     }
 
-    set tripComputer(tripComputerType: string) {
+    set tripComputer(tripComputerType: ComputerTypes) {
+        if (!(tripComputerType in ComputerTypes)) {
+            throw new TypeError(`Invalid trip computer type: '${tripComputerType}'`);
+        }
         this._tripComputer = tripComputerType;
     }
 
-    get GPS(): string {
-        return this._GPS ?? Car.NOT_SET;
+    get GPS(): NotSettable<GPSTypes> {
+        return this._GPS;
     }
 
-    set GPS(gpsType: string) {
+    set GPS(gpsType: GPSTypes) {
+        if (!(gpsType in GPSTypes)) {
+            throw new TypeError(`Invalid GPS type: '${gpsType}'`);
+        }
         this._GPS = gpsType;
     }
 }
@@ -74,7 +89,7 @@ export class CarBuilder implements Builder {
         return this.car.engine;
     }
 
-    setEngine(engineType: string): void {
+    setEngine(engineType: EngineTypes): void {
         this.car.engine = engineType;
     }
 
@@ -82,7 +97,7 @@ export class CarBuilder implements Builder {
         return this.car.tripComputer;
     }
 
-    setTripComputer(computerType: string): void {
+    setTripComputer(computerType: ComputerTypes): void {
         this.car.tripComputer = computerType;
     }
 
@@ -90,7 +105,7 @@ export class CarBuilder implements Builder {
         return this.car.GPS;
     }
 
-    setGPS(gpsType: string): void {
+    setGPS(gpsType: GPSTypes): void {
         this.car.GPS = gpsType;
     }
 }

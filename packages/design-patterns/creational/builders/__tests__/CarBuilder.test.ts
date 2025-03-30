@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, test } from 'vitest';
-import { Car, CarBuilder } from '../../builders';
+
+import {
+    Car,
+    CarBuilder } from '../../builders';
+import {
+    EngineTypes, ComputerTypes, GPSTypes,
+} from '../constants';
 
 describe('CarBuilder', () => {
     let carBuilder: CarBuilder;
@@ -11,24 +17,32 @@ describe('CarBuilder', () => {
     test('can set and get number of seats', () => {
         expect(carBuilder.getSeats()).toBe(Car.NOT_SET);
 
-        expect('implement me!').toBe(false);
+        carBuilder.setSeats(6);
+
+        expect(carBuilder.getSeats()).toBe(6);
     });
 
     test('can set and get engine', () => {
-        expect(carBuilder.getSeats()).toBe(Car.NOT_SET);
+        expect(carBuilder.getEngine()).toBe(Car.NOT_SET);
 
-        expect('implement me!').toBe(false);
+        carBuilder.setEngine(EngineTypes.Electric);
+
+        expect(carBuilder.getEngine()).toBe(EngineTypes.Electric);
     });
 
     test('can set and get trip computer', () => {
-        expect(carBuilder.getSeats()).toBe(Car.NOT_SET);
+        expect(carBuilder.getTripComputer()).toBe(Car.NOT_SET);
 
-        expect('implement me!').toBe(false);
+        carBuilder.setTripComputer(ComputerTypes.Pro);
+
+        expect(carBuilder.getTripComputer()).toBe(ComputerTypes.Pro);
     });
 
     test('can set and get GPS', () => {
-        expect(carBuilder.getSeats()).toBe(Car.NOT_SET);
+        expect(carBuilder.getGPS()).toBe(Car.NOT_SET);
 
-        expect('implement me!').toBe(false);
+        carBuilder.setGPS(GPSTypes.Basic);
+
+        expect(carBuilder.getGPS()).toBe(GPSTypes.Basic);
     });
 });
