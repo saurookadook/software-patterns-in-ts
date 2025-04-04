@@ -1,5 +1,8 @@
 import { EngineTypes } from '../constants';
-import { Builder } from '../types';
+import type { Car, Manual }  from '../entities';
+import { Builder, CarConfig } from '../types';
+
+type BuilderArg = Builder<Car> | Builder<Manual>
 
 /**
  * @description The director is only responsible for executing the building \
@@ -13,24 +16,38 @@ import { Builder } from '../types';
  * using the same building steps.
  */
 export class Director {
-    constructDieselCar(builder: Builder): void {
-        builder.setSeats(2);
-        builder.setEngine(EngineTypes.Diesel);
-        builder.setTripComputer(false);
-        builder.setGPS(false);
+    constructCarFromConfig(builder: BuilderArg, config: CarConfig) {
+        builder.reset();
+        builder.setSeats(config.seats);
+        builder.setEngine(config.engine);
+        builder.setTripComputer(config.installTripComputer);
+        builder.setGPS(config.installGPS);
     }
 
-    constructElectricCar(builder: Builder): void {
-        builder.setSeats(5);
-        builder.setEngine(EngineTypes.Electric);
-        builder.setTripComputer(true);
-        builder.setGPS(true);
+    constructBasicDieselCar(builder: BuilderArg): void {
+        this.constructCarFromConfig(builder, {
+            seats: 2,
+            engine: EngineTypes.Diesel,
+            installTripComputer: false,
+            installGPS: false,
+        });
     }
 
-    constructGasolineCar(builder: Builder): void {
-        builder.setSeats(8);
-        builder.setEngine(EngineTypes.Gasoline);
-        builder.setTripComputer(false);
-        builder.setGPS(true);
+    constructBasicElectricCar(builder: BuilderArg): void {
+        this.constructCarFromConfig(builder, {
+            seats: 5,
+            engine: EngineTypes.Electric,
+            installTripComputer: true,
+            installGPS: true,
+        });
+    }
+
+    constructBasicGasolineCar(builder: BuilderArg): void {
+        this.constructCarFromConfig(builder, {
+            seats: 8,
+            engine: EngineTypes.Gasoline,
+            installTripComputer: false,
+            installGPS: true,
+        });
     }
 }
