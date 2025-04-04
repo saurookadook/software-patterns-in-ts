@@ -2,7 +2,7 @@ import { EngineTypes } from "./constants";
 import { Manual } from "./entities";
 import type { Builder } from "./types";
 
-export class CarManualBuilder implements Builder {
+export class CarManualBuilder implements Builder<Manual> {
     private manual: Manual;
 
     constructor() {

@@ -8,7 +8,7 @@ import type { Builder } from './types';
  * program may have program may have several variations of builders, each \
  * implemented differently.
  */
-export class CarBuilder implements Builder {
+export class CarBuilder implements Builder<Car> {
     private car: Car;
 
     constructor() {
