@@ -66,11 +66,10 @@ class LinkedList {
             currentNode = currentNode.next;
         }
 
-        if (linkedListStr !== '') {
-            linkedListStr += 'null';
-        }
+        linkedListStr += 'null';
 
-        console.log(linkedListStr);
+        // console.log(linkedListStr);
+        return linkedListStr;
     }
 
     show_usingArray() {
@@ -84,7 +83,8 @@ class LinkedList {
 
         linkedListData.push('null');
 
-        console.log(linkedListData.join(' → '));
+        // console.log(linkedListData.join(' → '));
+        return linkedListData.join(' → ');
     }
 }
 
