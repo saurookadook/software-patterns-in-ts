@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 
-import { Rectangle } from '../Rectangle';
+import { Rectangle } from '../src/Rectangle';
 
 describe('Rectangle', () => {
     let rectangle: Rectangle;

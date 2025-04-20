@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 
-import { Circle } from '../Circle';
+import { Circle } from '../src/Circle';
 
 describe('Circle', () => {
     let circle: Circle;
