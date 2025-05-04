@@ -1,8 +1,6 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 
-import { CarBuilder } from '../../builders';
-import { EngineTypes } from '../constants';
-import { Car } from '../entities';
+import { Car, CarBuilder, EngineTypes } from '../src';
 
 describe('CarBuilder', () => {
     let carBuilder: CarBuilder;

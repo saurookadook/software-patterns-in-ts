@@ -1,9 +1,13 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 
-import { BuilderApp, ResultProduct } from '../BuilderApp';
-import { EngineTypes } from '../constants';
-import { Car, Manual } from '../entities';
-import { CarConfig } from '../types';
+import {
+    Car,
+    CarConfig,
+    BuilderApp,
+    EngineTypes,
+    Manual,
+    ResultProduct,
+} from '../src';
 
 const testCases = [
     {
