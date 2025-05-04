@@ -106,7 +106,7 @@ export default tseslint.config(
         },
     },
     {
-        extends: [js.configs.recommended, ...tseslint.configs.recommended],
+        extends: [js.configs.recommended, tseslint.configs.recommended],
         files: ['**/*.config.ts'],
         ignores: [
             'build',
